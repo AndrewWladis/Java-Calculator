@@ -1,4 +1,4 @@
-package org.mphschool.calculator;
+package org.mphschool.Calculator;
 
 import java.awt.FlowLayout;
 
@@ -14,10 +14,14 @@ public class Calculator extends JFrame {
 	public Calculator() {
 		super("Calculator");
 		
-		ClearButton clearbutton = new ClearButton();
-		add(clearbutton.createGuiButton());
+		Button clearbutton = new Button();
+		add(clearbutton.createGuiButton("C"));
 		
-		setSize(400, 600);
+		Display display = new Display();
+		
+		add(display.createGUIComponent());
+		
+		setSize(250, 400);
 		setPreferredSize(getSize());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

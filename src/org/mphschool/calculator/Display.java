@@ -6,7 +6,8 @@ import javax.swing.JTextField;
 public class Display {
 	public JTextField createGUIComponent() {
 		JTextField label = new JTextField();
-		label.setPreferredSize(new Dimension(150, 60));
+		label.setEditable(false);
+		label.setPreferredSize(new Dimension(200, 70));
 		return label;
 	}
 }

@@ -14,7 +14,7 @@ public class Button {
 		button.setMargin(new Insets(5, 5, 5, 5));
 		//button.setText(input);
 		if (input == "C") {
-			button.setBackground(Color.red);
+			button.setBackground(Color.RED);
 		}
 		return button;
 	}

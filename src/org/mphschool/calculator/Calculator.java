@@ -14,18 +14,23 @@ public class Calculator extends JFrame {
 	public Calculator() {
 		super("Calculator");
 		
-		Button clearbutton = new Button();
-		add(clearbutton.createGuiButton("C"));
-		
 		Display display = new Display();
 		
+		setLayout(new FlowLayout());
+		
+		Button clearbutton = new Button();
+		add(clearbutton.createGuiButton("C"));
 		add(display.createGUIComponent());
+		
+		for (int i = 0; i < 10; i++) {
+			Button numButton = new Button();
+			add(numButton.createGuiButton(String.valueOf(i)));
+		}
 		
 		setSize(250, 400);
 		setPreferredSize(getSize());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setLayout(new FlowLayout());
 		setVisible(true);
 		
 	}

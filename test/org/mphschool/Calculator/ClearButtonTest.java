@@ -3,22 +3,20 @@ package org.mphschool.Calculator;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.JButton;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mphschool.Calculator.Button;
 
-class ButtonTest {
-	Button button;
+class ClearButtonTest {
+
+	private ClearButton button;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		button = new Button();
+		button = new ClearButton();
 	}
 
 	@AfterEach
@@ -31,14 +29,22 @@ class ButtonTest {
 	}
 	
 	@Test
-	void testIsButton() {
-		Object btn = button.createGuiButton("B");
+	void testCreateGuiButton() {
+		Object btn = button.createClearButton();
+		assertNotNull(btn);
 		assertTrue(btn instanceof JButton);
 	}
+	
 	@Test
-	void testButtonIsCorrectSize() {
-		JButton btn = button.createGuiButton("U");
-		assertEquals(60.0, btn.getPreferredSize().getWidth(), 0.001);
-		assertEquals(60.0, btn.getPreferredSize().getHeight(), 0.001);
+	void testButtonLabelIsC() {
+		JButton btn = button.createClearButton();
+		assertEquals("C", btn.getText());
 	}
+	
+	@Test
+	void testButtonColor() {
+		JButton btn = button.createClearButton();
+		assertEquals(btn.getBackground(), Color.red);
+	}
+	
 }

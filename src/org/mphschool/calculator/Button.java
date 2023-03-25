@@ -9,9 +9,15 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class Button {
-
-	public static JButton createGuiButton(String input) {
-		JButton button = new JButton(input);
+	
+	private static String label;
+	
+	public Button(String theLabel) {
+		label = theLabel;
+	}
+	
+	public JButton createGuiButton() {
+		JButton button = new JButton(label);
 		button.setOpaque(true);
 		button.setPreferredSize(new Dimension(60, 60));
 		button.setMargin(new Insets(5, 5, 5, 5));

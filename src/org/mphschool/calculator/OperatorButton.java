@@ -5,9 +5,14 @@ import java.awt.Component;
 
 import javax.swing.JButton;
 
-public class OperatorButton {
-	public static JButton createOperatorButton(String input) {
-		JButton button = Button.createGuiButton(input);
+public class OperatorButton extends Button {
+	
+	public OperatorButton(String theLabel) {
+		super(theLabel);
+	}
+	
+	public JButton createGuiButton() {
+		JButton button = super.createGuiButton();
 		button.setBackground(Color.blue);
 		return button;
 	}

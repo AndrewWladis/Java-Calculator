@@ -1,5 +1,6 @@
 package org.mphschool.Calculator;
 
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
@@ -10,32 +11,33 @@ public class Calculator extends JFrame {
 		new Calculator();
 	}
 
-	
 	public Calculator() {
 		super("Calculator");
 		
 		Display display = new Display();
 		
 		setLayout(new FlowLayout());
-		add(ClearButton.createClearButton());
+		ClearButton clearButton = new ClearButton();
+		add(clearButton.createGuiButton());
 		add(display.createGUIComponent());
 		
-		add(DigitButton.createDigitButton("7"));
-		add(DigitButton.createDigitButton("8"));
-		add(DigitButton.createDigitButton("9"));
-		add(OperatorButton.createOperatorButton("+"));
-		add(DigitButton.createDigitButton("4"));
-		add(DigitButton.createDigitButton("5"));
-		add(DigitButton.createDigitButton("6"));
-		add(OperatorButton.createOperatorButton("-"));
-		add(DigitButton.createDigitButton("3"));
-		add(DigitButton.createDigitButton("2"));
-		add(DigitButton.createDigitButton("1"));
-		add(OperatorButton.createOperatorButton("*"));
-		add(DigitButton.createDigitButton("."));
-		add(DigitButton.createDigitButton("0"));
-		add(OperatorButton.createOperatorButton("="));
-		add(OperatorButton.createOperatorButton("/"));
+		//DigitButton sevenButton = new DigitButton("7");
+		add(new DigitButton("7").createGuiButton());
+		add(new DigitButton("8").createGuiButton());
+		add(new DigitButton("9").createGuiButton());
+		add(new OperatorButton("+").createGuiButton());
+		add(new DigitButton("4").createGuiButton());
+		add(new DigitButton("5").createGuiButton());
+		add(new DigitButton("6").createGuiButton());
+		add(new OperatorButton("-").createGuiButton());
+		add(new DigitButton("3").createGuiButton());
+		add(new DigitButton("2").createGuiButton());
+		add(new DigitButton("1").createGuiButton());
+		add(new OperatorButton("*").createGuiButton());
+		add(new DigitButton(".").createGuiButton());
+		add(new DigitButton("0").createGuiButton());
+		add(new OperatorButton("=").createGuiButton());
+		add(new OperatorButton("/").createGuiButton());
 		
 		setSize(275, 375);
 		setPreferredSize(getSize());

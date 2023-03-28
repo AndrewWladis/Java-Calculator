@@ -18,7 +18,7 @@ class ButtonTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		button = new Button();
+		button = new Button("h");
 	}
 
 	@AfterEach
@@ -32,12 +32,12 @@ class ButtonTest {
 	
 	@Test
 	void testIsButton() {
-		Object btn = button.createGuiButton("B");
+		Object btn = button.createGuiButton();
 		assertTrue(btn instanceof JButton);
 	}
 	@Test
 	void testButtonIsCorrectSize() {
-		JButton btn = button.createGuiButton("U");
+		JButton btn = button.createGuiButton();
 		assertEquals(60.0, btn.getPreferredSize().getWidth(), 0.001);
 		assertEquals(60.0, btn.getPreferredSize().getHeight(), 0.001);
 	}

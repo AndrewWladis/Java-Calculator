@@ -30,20 +30,20 @@ class ClearButtonTest {
 	
 	@Test
 	void testCreateGuiButton() {
-		Object btn = button.createClearButton();
+		Object btn = button.createGuiButton();
 		assertNotNull(btn);
 		assertTrue(btn instanceof JButton);
 	}
 	
 	@Test
 	void testButtonLabelIsC() {
-		JButton btn = button.createClearButton();
+		JButton btn = button.createGuiButton();
 		assertEquals("C", btn.getText());
 	}
 	
 	@Test
 	void testButtonColor() {
-		JButton btn = button.createClearButton();
+		JButton btn = button.createGuiButton();
 		assertEquals(btn.getBackground(), Color.red);
 	}
 	

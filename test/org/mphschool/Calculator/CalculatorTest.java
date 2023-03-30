@@ -8,9 +8,11 @@ import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
 	
-	Calculator calculator = new Calculator();
+	SwingCalculator calculator = new SwingCalculator();
+	
 	@BeforeEach
 	void setUp() throws Exception {
+		calculator = new SwingCalculator();
 	}
 
 	@AfterEach
@@ -22,10 +24,9 @@ class CalculatorTest {
 		assertNotNull(calculator);
 	}
 	
-
 	@Test
 	void testCalculatorType() {
-		assertTrue(calculator instanceof Calculator);
+		assertTrue(calculator instanceof SwingCalculator);
 	}
 
 }

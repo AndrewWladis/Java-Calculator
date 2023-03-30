@@ -13,10 +13,12 @@ import org.junit.jupiter.api.Test;
 class ClearButtonTest {
 
 	private ClearButton button;
+	private MockCalculator calculator;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		button = new ClearButton();
+		calculator = new MockCalculator();
+		button = new ClearButton(calculator);
 	}
 
 	@AfterEach
@@ -46,5 +48,11 @@ class ClearButtonTest {
 		JButton btn = button.createGuiButton();
 		assertEquals(btn.getBackground(), Color.red);
 	}
-	
+
+	@Test
+	void testClickingTheButtonCallsClearTheCalculator() {
+		JButton btn = button.createGuiButton();
+		btn.doClick();
+		assertTrue(calculator.clearWasCalled);
+	}
 }

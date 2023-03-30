@@ -6,7 +6,7 @@ import javax.swing.JButton;
 
 public class ClearButton extends Button {
 	
-	public ClearButton() {
+	public ClearButton(Calculator calculator) {
 		super("C");
 	}
 	

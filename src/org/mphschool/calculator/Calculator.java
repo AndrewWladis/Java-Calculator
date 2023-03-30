@@ -36,7 +36,7 @@ public class Calculator extends JFrame {
 		add(new OperatorButton("*").createGuiButton());
 		add(new DigitButton(".").createGuiButton());
 		add(new DigitButton("0").createGuiButton());
-		add(new OperatorButton("=").createGuiButton());
+		add(new EqualsButton().createGuiButton());
 		add(new OperatorButton("/").createGuiButton());
 		
 		setSize(275, 375);

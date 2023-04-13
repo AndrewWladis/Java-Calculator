@@ -7,10 +7,13 @@ public class Display {
 	
 	private JTextField field;
 	
-	public JTextField createGUIComponent() {
+	public Display() {
 		field = new JTextField();
 		field.setEditable(false);
 		field.setPreferredSize(new Dimension(195, 70));
+	}
+	
+	public JTextField getGUIComponent() {
 		return field;
 	}
 	

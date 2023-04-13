@@ -32,27 +32,27 @@ class DisplayTest {
 	
 	@Test
 	void testEqualsTextField() {
-		Object dis = display.createGUIComponent();
+		Object dis = display.getGUIComponent();
 		assertNotNull(dis);
 		assertTrue(dis instanceof JTextField);
 	}
 	
 	@Test
 	void testIsEditable() {
-		JTextField dis = display.createGUIComponent();
+		JTextField dis = display.getGUIComponent();
 		assertTrue(!dis.isEditable());
 	}
 	
 	@Test
 	void testIsCorrectSize() {
-		JTextField dis = display.createGUIComponent();
+		JTextField dis = display.getGUIComponent();
 		assertEquals(195.0, dis.getPreferredSize().getWidth(), 0.001);
 		assertEquals(70.0, dis.getPreferredSize().getHeight(), 0.001);
 	}
 	
 	@Test
 	void testUpdateSetText() {
-		JTextField dis = display.createGUIComponent();
+		JTextField dis = display.getGUIComponent();
 		display.update("7");
 		assertEquals("7", dis.getText());
 	}

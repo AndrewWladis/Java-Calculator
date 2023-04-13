@@ -28,5 +28,14 @@ class CalculatorTest {
 	void testCalculatorType() {
 		assertTrue(calculator instanceof SwingCalculator);
 	}
+	
+	@Test
+	void testClearClearsTheDisplay() {
+		Display display = calculator.getDisplay();
+		display.getGUIComponent().setText("99");
+		
+		calculator.clear();
+		assertEquals("", display.getGUIComponent().getText());
+	}
 
 }

@@ -8,11 +8,9 @@ import javax.swing.JButton;
 
 public class ClearButton extends Button {
 	
-	private Calculator calculator;
 	
 	public ClearButton(Calculator calculator) {
-		super("C");
-		this.calculator = calculator;
+		super(calculator, "C");
 	}
 	
 	@Override
@@ -24,7 +22,7 @@ public class ClearButton extends Button {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calculator.clear();
+				getCalculator().clear();
 				
 			}
 			

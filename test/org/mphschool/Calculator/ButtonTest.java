@@ -15,9 +15,13 @@ import org.mphschool.Calculator.Button;
 
 class ButtonTest {
 	Button button;
+	private String label;
+	private MockCalculator calculator;
 
 	@BeforeEach
 	void setUp() throws Exception {
+		label = "7";
+		calculator = new MockCalculator();
 		button = new Button("h");
 	}
 
@@ -41,5 +45,14 @@ class ButtonTest {
 		JButton btn = button.createGuiButton();
 		assertEquals(60.0, btn.getPreferredSize().getWidth(), 0.001);
 		assertEquals(60.0, btn.getPreferredSize().getHeight(), 0.001);
+	}
+	
+	@Test
+	void testPressingTheButtonNotifiesTheCalculator() {
+		JButton btn = button.createGuiButton();
+		btn.doClick();
+		
+		assertTrue(calculator.digitPressedWasCalled);
+		assertTrue(label, calculator.digitThatWasPressed);
 	}
 }

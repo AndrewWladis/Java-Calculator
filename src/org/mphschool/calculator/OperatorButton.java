@@ -7,8 +7,8 @@ import javax.swing.JButton;
 
 public class OperatorButton extends Button {
 	
-	public OperatorButton(String theLabel) {
-		super(theLabel);
+	public OperatorButton(Calculator calculator, String theLabel) {
+		super(calculator, theLabel);
 	}
 	
 	public JButton createGuiButton() {

@@ -30,22 +30,22 @@ public class SwingCalculator extends JFrame implements Calculator {
 		add(clearButton.createGuiButton());
 		add(display.getGUIComponent());
 		
-		add(new DigitButton("7").createGuiButton());
-		add(new DigitButton("8").createGuiButton());
-		add(new DigitButton("9").createGuiButton());
-		add(new OperatorButton("+").createGuiButton());
-		add(new DigitButton("4").createGuiButton());
-		add(new DigitButton("5").createGuiButton());
-		add(new DigitButton("6").createGuiButton());
-		add(new OperatorButton("-").createGuiButton());
-		add(new DigitButton("3").createGuiButton());
-		add(new DigitButton("2").createGuiButton());
-		add(new DigitButton("1").createGuiButton());
-		add(new OperatorButton("*").createGuiButton());
-		add(new DigitButton(".").createGuiButton());
-		add(new DigitButton("0").createGuiButton());
+		add(new DigitButton(this, "7").createGuiButton());
+		add(new DigitButton(this, "8").createGuiButton());
+		add(new DigitButton(this, "9").createGuiButton());
+		add(new OperatorButton(this, "+").createGuiButton());
+		add(new DigitButton(this, "4").createGuiButton());
+		add(new DigitButton(this, "5").createGuiButton());
+		add(new DigitButton(this,"6").createGuiButton());
+		add(new OperatorButton(this, "-").createGuiButton());
+		add(new DigitButton(this,"3").createGuiButton());
+		add(new DigitButton(this,"2").createGuiButton());
+		add(new DigitButton(this,"1").createGuiButton());
+		add(new OperatorButton(this, "*").createGuiButton());
+		add(new DigitButton(this,".").createGuiButton());
+		add(new DigitButton(this,"0").createGuiButton());
 		add(new EqualsButton().createGuiButton());
-		add(new OperatorButton("/").createGuiButton());
+		add(new OperatorButton(this, "/").createGuiButton());
 		
 		setSize(275, 375);
 		setPreferredSize(getSize());
@@ -56,6 +56,12 @@ public class SwingCalculator extends JFrame implements Calculator {
 
 	@Override
 	public void clear() {
-		display.update("");
+		display.update(" ");
+	}
+	
+	@Override
+	public void digitPressed(String whichDigit) {
+		digitPressedWasCalled = true;
+		digit
 	}
 }

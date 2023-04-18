@@ -11,9 +11,19 @@ import javax.swing.JButton;
 public class Button {
 	
 	private static String label;
+	private Calculator calculator;
 	
-	public Button(String theLabel) {
+	public Button(Calculator theCaculator, String theLabel) {
 		label = theLabel;
+		calculator = theCaculator;
+	}
+	
+	public String getLabel() {
+		return label;
+	}
+	
+	public Calculator getCalculator() {
+		return calculator;
 	}
 	
 	public JButton createGuiButton() {

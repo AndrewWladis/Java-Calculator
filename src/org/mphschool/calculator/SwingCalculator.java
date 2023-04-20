@@ -57,15 +57,26 @@ public class SwingCalculator extends JFrame implements Calculator {
 
 	@Override
 	public void clear() {
-		display.update(" ");
+		display.update("");
 	}
 	
 	@Override
 	public void digitPressed(String whichDigit) {
-		if (operand1.isEmpty() && whichDigit.equals(".")) {
-			operand1 += "0";
+		if (whichDigit.equals(".")) {
+			if (operand1.contains(".")) {
+				return;
+			}
+			if (operand1.isEmpty()) {
+				operand1 = "0";
+			}
 		}
-		operand1 += whichDigit;
+		
+		if (operand1.equals("0") && !whichDigit.equals(".")) {
+			operand1 = whichDigit;
+		} else {
+			operand1 += whichDigit;
+		}
+		
 		display.update(operand1);
 	}
 }

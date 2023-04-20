@@ -61,5 +61,72 @@ class CalculatorTest {
 		calculator.digitPressed(".");
 		assertEquals("0.", display.getGUIComponent().getText());
 	}
+	
+	@Test
+	void testZeroThenDecimalUpdatesDisplay() {
+		calculator.digitPressed("0");
+		calculator.digitPressed(".");
+		assertEquals("0.", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testPressingDecimalTwiceWithDigitInBetween() {
+		calculator.digitPressed(".");
+		calculator.digitPressed("4");
+		calculator.digitPressed(".");
+		System.out.println(display.getGUIComponent().getText()); 
+		assertEquals("0.4", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testPressingDecimalTwice() {
+		calculator.digitPressed(".");
+		calculator.digitPressed(".");
+		assertEquals("0.", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testPressingDigitThenDecimalThenDigitThenDecimal() {
+		calculator.digitPressed("2");
+		calculator.digitPressed(".");
+		calculator.digitPressed("2");
+		calculator.digitPressed(".");
+		assertEquals("2.2", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testPressingDigitThenDecimalThenDigitThenDecimalThenDigit() {
+		calculator.digitPressed("2");
+		calculator.digitPressed(".");
+		calculator.digitPressed("2");
+		calculator.digitPressed(".");
+		calculator.digitPressed("2");
+		assertEquals("2.22", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testPressingZeroTwiceThenDecimalPutsOnlyOneLeadingZero() {
+		calculator.digitPressed("0");
+		calculator.digitPressed("0");
+		assertEquals("0", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testPressingMultipleZeroesAfterANumberWorks() {
+		calculator.digitPressed("9");
+		calculator.digitPressed("0");
+		calculator.digitPressed("0");
+		assertEquals("900", display.getGUIComponent().getText());
+	}
+
+	@Test
+	void testPressingDigitAndThenAnotherDigitAndThenDecimalThenDigitWorks() {
+		calculator.digitPressed("9");
+		calculator.digitPressed("0");
+		calculator.digitPressed(".");
+		calculator.digitPressed("5");
+		assertEquals("90.5", display.getGUIComponent().getText());
+	}
+
 
 }

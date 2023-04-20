@@ -2,7 +2,7 @@ package org.mphschool.Calculator;
 
 public class EqualsButton extends OperatorButton {
 
-	public EqualsButton() {
-		super("=");
+	public EqualsButton(Calculator theCalculator) {
+		super(theCalculator, "=");
 	}
 }

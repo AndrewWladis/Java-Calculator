@@ -22,7 +22,7 @@ class ButtonTest {
 	void setUp() throws Exception {
 		label = "7";
 		calculator = new MockCalculator();
-		button = new Button("h");
+		button = new Button(calculator, "h");
 	}
 
 	@AfterEach

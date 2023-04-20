@@ -13,6 +13,7 @@ public class SwingCalculator extends JFrame implements Calculator {
 	}
 	
 	private Display display;
+	private String operand1 = "";
 
 	public SwingCalculator() {
 		super("Calculator");
@@ -44,7 +45,7 @@ public class SwingCalculator extends JFrame implements Calculator {
 		add(new OperatorButton(this, "*").createGuiButton());
 		add(new DigitButton(this,".").createGuiButton());
 		add(new DigitButton(this,"0").createGuiButton());
-		add(new EqualsButton().createGuiButton());
+		add(new EqualsButton(this).createGuiButton());
 		add(new OperatorButton(this, "/").createGuiButton());
 		
 		setSize(275, 375);
@@ -61,7 +62,10 @@ public class SwingCalculator extends JFrame implements Calculator {
 	
 	@Override
 	public void digitPressed(String whichDigit) {
-		digitPressedWasCalled = true;
-		digit
+		if (operand1.isEmpty() && whichDigit.equals(".")) {
+			operand1 += "0";
+		}
+		operand1 += whichDigit;
+		display.update(operand1);
 	}
 }

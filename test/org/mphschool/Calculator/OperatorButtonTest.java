@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class OperatorButtonTest {
-	
-	OperatorButton button = new OperatorButton("+");
+	private MockCalculator calculator;
+	OperatorButton button = new OperatorButton(calculator, "+");
 
 	@BeforeEach
 	void setUp() throws Exception {

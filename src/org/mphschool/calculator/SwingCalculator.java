@@ -79,4 +79,10 @@ public class SwingCalculator extends JFrame implements Calculator {
 		
 		display.update(operand1);
 	}
+
+	@Override
+	public void operatorPressed(String whichOperator) {
+		operatorPressedWasCalled = true;
+		operatorThatWasPressed = true;
+	}
 }

@@ -4,4 +4,5 @@ public interface Calculator {
 
 	void clear();
 	void digitPressed(String whichDigit);
+	void operatorPressed(String whichOperator);
 }

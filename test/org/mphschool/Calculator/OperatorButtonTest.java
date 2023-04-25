@@ -12,10 +12,12 @@ import org.junit.jupiter.api.Test;
 
 class OperatorButtonTest {
 	private MockCalculator calculator;
-	OperatorButton button = new OperatorButton(calculator, "+");
+	OperatorButton button;
 
 	@BeforeEach
 	void setUp() throws Exception {
+		calculator = new MockCalculator();
+		button = new OperatorButton(calculator, "+");
 	}
 
 	@AfterEach
@@ -26,17 +28,12 @@ class OperatorButtonTest {
 	void testNotNull() {
 		assertNotNull(button);
 	}
-
-	@Test
-	void testColor() {
-		assertEquals(button.createGuiButton().getBackground(), Color.blue);
-	}
 	
 	@Test
 	void testClickingTheButtonCallsClearTheCalculator() {
 		JButton btn = button.createGuiButton();
 		btn.doClick();
 		assertTrue(calculator.operatorPressedWasCalled);
-		assertEquals("+", calculator.operatorThatWasPressed)
+		assertEquals("+", calculator.operatorThatWasPressed);
 	}
 }

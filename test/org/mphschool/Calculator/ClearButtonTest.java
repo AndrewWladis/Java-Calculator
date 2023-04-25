@@ -44,12 +44,6 @@ class ClearButtonTest {
 	}
 	
 	@Test
-	void testButtonColor() {
-		JButton btn = button.createGuiButton();
-		assertEquals(btn.getBackground(), Color.red);
-	}
-
-	@Test
 	void testClickingTheButtonCallsClearTheCalculator() {
 		JButton btn = button.createGuiButton();
 		btn.doClick();

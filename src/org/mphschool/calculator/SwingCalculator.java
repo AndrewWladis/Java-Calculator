@@ -82,7 +82,12 @@ public class SwingCalculator extends JFrame implements Calculator {
 
 	@Override
 	public void operatorPressed(String whichOperator) {
-		operatorPressedWasCalled = true;
-		operatorThatWasPressed = true;
+		
+	}
+
+	@Override
+	public void calculateResult() {
+		// TODO Auto-generated method stub
+		
 	}
 }

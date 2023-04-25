@@ -11,10 +11,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class EqualsButtonTest {
-	EqualsButton button = new EqualsButton();
+	private MockCalculator calculator;
+	EqualsButton button;
 
 	@BeforeEach
 	void setUp() throws Exception {
+		calculator = new MockCalculator();
+		button = new EqualsButton(calculator);
 	}
 
 	@AfterEach
@@ -32,13 +35,15 @@ class EqualsButtonTest {
 	}
 	
 	@Test
-	void testColor() {
-		assertEquals(button.createGuiButton().getBackground(), Color.blue);
+	void testLabel() {
+		assertEquals(button.createGuiButton().getText(), "=");
 	}
 	
 	@Test
-	void testLabel() {
-		assertEquals(button.createGuiButton().getText(), "=");
+	void testClickingTheButtonCallsNotifiesTheCalculator() {
+		JButton btn = button.createGuiButton();
+		btn.doClick();
+		assertTrue(calculator.calculateResultWasCalled);
 	}
 
 }

@@ -6,10 +6,11 @@ import java.util.function.Supplier;
 public class MockCalculator implements Calculator {
 
 	public boolean clearWasCalled;
-	public Boolean digitPressedWasCalled;
+	public boolean digitPressedWasCalled;
 	public String digitThatWasPressed;
-	public Boolean operatorPressedWasCalled;
+	public boolean operatorPressedWasCalled;
 	public String operatorThatWasPressed;
+	public boolean calculateResultWasCalled;
 
 	@Override
 	public void clear() {
@@ -18,14 +19,18 @@ public class MockCalculator implements Calculator {
 
 	@Override
 	public void digitPressed(String whichDigit) {
-		// TODO Auto-generated method stub
-		
+		digitPressedWasCalled = true;
+		digitThatWasPressed = whichDigit;
 	}
 
 	@Override
 	public void operatorPressed(String whichOperator) {
 		operatorPressedWasCalled = true;
-		operatorThatWasPressed = true;
+		operatorThatWasPressed = whichOperator;
 	}
 
+	@Override
+	public void calculateResult() {
+		calculateResultWasCalled = true;
+	}
 }

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class SwingCalculator extends JFrame implements Calculator {
 	
@@ -23,6 +25,23 @@ public class SwingCalculator extends JFrame implements Calculator {
 		operand1 = "";
 		display = new Display();
 		buttons = new ArrayList<Button>();
+		buttons.add(new ClearButton(this));
+		buttons.add(new DigitButton(this, "7"));
+		buttons.add(new DigitButton(this, "8"));
+		buttons.add(new DigitButton(this, "9"));
+		buttons.add(new OperatorButton(this, "+"));
+		buttons.add(new DigitButton(this, "4"));
+		buttons.add(new DigitButton(this, "5"));
+		buttons.add(new DigitButton(this, "6"));
+		buttons.add(new OperatorButton(this, "-"));
+		buttons.add(new DigitButton(this, "3"));
+		buttons.add(new DigitButton(this, "2"));
+		buttons.add(new DigitButton(this, "1"));
+		buttons.add(new OperatorButton(this, "*"));
+		buttons.add(new DigitButton(this,"."));
+		buttons.add(new DigitButton(this,"0"));
+		buttons.add(new EqualsButton(this));
+		buttons.add(new OperatorButton(this, "/"));
 	}
 	
 	public Display getDisplay() {
@@ -30,28 +49,20 @@ public class SwingCalculator extends JFrame implements Calculator {
 	}
 	
 	private void launchGui() {
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		
-		setLayout(new FlowLayout());
-		ClearButton clearButton = new ClearButton(this);
-		add(clearButton.createGuiButton());
-		add(display.getGUIComponent());
 		
-		add(new DigitButton(this, "7").createGuiButton());
-		add(new DigitButton(this, "8").createGuiButton());
-		add(new DigitButton(this, "9").createGuiButton());
-		add(new OperatorButton(this, "+").createGuiButton());
-		add(new DigitButton(this, "4").createGuiButton());
-		add(new DigitButton(this, "5").createGuiButton());
-		add(new DigitButton(this,"6").createGuiButton());
-		add(new OperatorButton(this, "-").createGuiButton());
-		add(new DigitButton(this,"3").createGuiButton());
-		add(new DigitButton(this,"2").createGuiButton());
-		add(new DigitButton(this,"1").createGuiButton());
-		add(new OperatorButton(this, "*").createGuiButton());
-		add(new DigitButton(this,".").createGuiButton());
-		add(new DigitButton(this,"0").createGuiButton());
-		add(new EqualsButton(this).createGuiButton());
-		add(new OperatorButton(this, "/").createGuiButton());
+		JPanel row = new JPanel();
+		row.add(display.getGUIComponent());
+		add(row);
+		for (int i = 0; i < buttons.size(); ++i) {
+			Button button = buttons.get(i);
+			row.add(button.createGuiButton());
+			if (i % 4 == 0) {
+				row = new JPanel();
+				add(row);
+			}
+		}
 		
 		setSize(275, 375);
 		setPreferredSize(getSize());

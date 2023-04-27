@@ -1,7 +1,8 @@
 package org.mphschool.Calculator;
 
-import java.awt.Component;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -13,11 +14,14 @@ public class SwingCalculator extends JFrame implements Calculator {
 	}
 	
 	private Display display;
+	private List<Button> buttons;
 	private String operand1 = "";
 
 	public SwingCalculator() {
 		super("Calculator");
+		operand1 = "";
 		display = new Display();
+		buttons = new ArrayList<Button>();
 	}
 	
 	public Display getDisplay() {

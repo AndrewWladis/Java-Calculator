@@ -127,6 +127,12 @@ class CalculatorTest {
 		calculator.digitPressed("5");
 		assertEquals("90.5", display.getGUIComponent().getText());
 	}
-
-
+	
+	@Test
+	void testPressingOperatorMovesToSecondOperand() {
+		calculator.digitPressed("9");
+		calculator.operatorPressed("+");
+		calculator.digitPressed("1");
+		assertEquals("1", display.getGUIComponent().getText());
+	}
 }

@@ -12,7 +12,7 @@ import javax.swing.JButton;
 
 public abstract class Button {
 	
-	private static String label;
+	private String label;
 	private Calculator calculator;
 	
 	public Button(Calculator theCaculator, String theLabel) {

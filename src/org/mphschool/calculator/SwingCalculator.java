@@ -19,10 +19,13 @@ public class SwingCalculator extends JFrame implements Calculator {
 	private Display display;
 	private List<Button> buttons;
 	private String operand1 = "";
+	private String operand2 = "";
+	private String operator;
 
 	public SwingCalculator() {
 		super("Calculator");
 		operand1 = "";
+		operand2 = "";
 		display = new Display();
 		buttons = new ArrayList<Button>();
 		buttons.add(new ClearButton(this));
@@ -98,6 +101,7 @@ public class SwingCalculator extends JFrame implements Calculator {
 
 	@Override
 	public void operatorPressed(String whichOperator) {
+		operator = whichOperator;
 		
 	}
 

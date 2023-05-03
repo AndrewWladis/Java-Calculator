@@ -2,10 +2,13 @@ package org.mphschool.Calculator;
 
 import java.awt.FlowLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 //import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,6 +21,7 @@ public class SwingCalculator extends JFrame implements Calculator {
 	
 	private Display display;
 	private List<Button> buttons;
+	private Map<String, JButton> guiButtons; //just 4 testing
 	private String operand1 = "";
 	private String operand2 = "";
 	private String operator;
@@ -26,6 +30,8 @@ public class SwingCalculator extends JFrame implements Calculator {
 		super("Calculator");
 		operand1 = "";
 		operand2 = "";
+		operator = "";
+		
 		display = new Display();
 		buttons = new ArrayList<Button>();
 		buttons.add(new ClearButton(this));
@@ -45,13 +51,14 @@ public class SwingCalculator extends JFrame implements Calculator {
 		buttons.add(new DigitButton(this,"0"));
 		buttons.add(new EqualsButton(this));
 		buttons.add(new OperatorButton(this, "/"));
+		guiButtons = new HashMap<String, JButton>();
 	}
 	
 	public Display getDisplay() {
 		return display;
 	}
 	
-	private void launchGui() {
+	public void launchGui() {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		
 		
@@ -109,5 +116,10 @@ public class SwingCalculator extends JFrame implements Calculator {
 	public void calculateResult() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public JButton getButton(String label) {
+		
+		return null;
 	}
 }

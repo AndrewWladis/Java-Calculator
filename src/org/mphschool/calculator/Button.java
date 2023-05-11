@@ -24,10 +24,6 @@ public abstract class Button {
 		return label;
 	}
 	
-	public Calculator getCalculator() {
-		return calculator;
-	}
-	
 	abstract void handleClick(Calculator calculator);
 	
 	public JButton createGuiButton() {

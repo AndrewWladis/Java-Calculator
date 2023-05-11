@@ -1,5 +1,6 @@
 package org.mphschool.Calculator;
 
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class SwingCalculator extends JFrame implements Calculator {
 	private String operand1 = "";
 	private String operand2 = "";
 	private String operator;
+	private Map<String, Operation> operators;
 
 	public SwingCalculator() {
 		super("Calculator");
@@ -52,6 +54,11 @@ public class SwingCalculator extends JFrame implements Calculator {
 		buttons.add(new EqualsButton(this));
 		buttons.add(new OperatorButton(this, "/"));
 		guiButtons = new HashMap<String, JButton>();
+		operators = new HashMap<String, Operation>();
+		operators.put("+", new AdditionOperation());
+		operators.put("-", new SubtractionOperator());
+		operators.put("*", new MultiplicationOperator());
+		operators.put("/", new DivisionOperator());
 	}
 	
 	public Display getDisplay() {
@@ -66,8 +73,9 @@ public class SwingCalculator extends JFrame implements Calculator {
 		row.add(display.getGUIComponent());
 		add(row);
 		for (int i = 0; i < buttons.size(); ++i) {
-			Button button = buttons.get(i);
-			row.add(button.createGuiButton());
+			JButton button = buttons.get(i).createGuiButton();
+			guiButtons.put(buttons.get(i).getLabel(), button);
+			row.add(button);
 			if (i % 4 == 0) {
 				row = new JPanel();
 				add(row);
@@ -88,38 +96,62 @@ public class SwingCalculator extends JFrame implements Calculator {
 	
 	@Override
 	public void digitPressed(String whichDigit) {
-		if (whichDigit.equals(".")) {
-			if (operand1.contains(".")) {
-				return;
+		if (operator == "") {
+			if (whichDigit.equals(".")) {
+				if (operand1.contains(".")) {
+					return;
+				}
+				if (operand1.isEmpty()) {
+					operand1 = "0";
+				}
 			}
-			if (operand1.isEmpty()) {
-				operand1 = "0";
+			
+			if (operand1.equals("0") && !whichDigit.equals(".")) {
+				operand1 = whichDigit;
+			} else {
+				operand1 += whichDigit;
 			}
-		}
-		
-		if (operand1.equals("0") && !whichDigit.equals(".")) {
-			operand1 = whichDigit;
+			
+			display.update(operand1);
 		} else {
-			operand1 += whichDigit;
+			if (whichDigit.equals(".")) {
+				if (operand2.contains(".")) {
+					return;
+				}
+				if (operand2.isEmpty()) {
+					operand2 = "0";
+				}
+			}
+			
+			if (operand2.equals("0") && !whichDigit.equals(".")) {
+				operand2 = whichDigit;
+			} else {
+				operand2 += whichDigit;
+			}
+			
+			display.update(operand2);
 		}
-		
-		display.update(operand1);
 	}
 
 	@Override
 	public void operatorPressed(String whichOperator) {
 		operator = whichOperator;
-		
 	}
 
 	@Override
 	public void calculateResult() {
-		// TODO Auto-generated method stub
+		Operation operation = operators.get(operator);
+		String result = String.valueOf(operation.perform(Double.valueOf(operand1), Double.valueOf(operand2)));
+        
+		if (result.endsWith(".0")) {
+        	result = result.substring(0, result.length() - 2);
+        }
+		display.update(String.valueOf(result));
 		
 	}
 
 	public JButton getButton(String label) {
-		
-		return null;
+		JButton button = guiButtons.get(label);
+		return button;
 	}
 }

@@ -135,4 +135,72 @@ class CalculatorTest {
 		calculator.digitPressed("1");
 		assertEquals("1", display.getGUIComponent().getText());
 	}
+	
+	@Test
+	void testAttemptToAdd() {
+		calculator.digitPressed("1");
+		calculator.operatorPressed("+");
+		calculator.digitPressed("2");
+		calculator.calculateResult();
+		assertEquals("3", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testDoubleZeroDisplaysOneZero() {
+		calculator.digitPressed("0");
+		calculator.digitPressed("0");
+		assertEquals("0", display.getGUIComponent().getText());
+	}
+	
+
+	@Test
+	void testTripleZeroDisplaysOneZero() {
+		calculator.digitPressed("0");
+		calculator.digitPressed("0");
+		calculator.digitPressed("0");
+		assertEquals("0", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testDoubleDecimalDisplaysOneDecimal() {
+		calculator.digitPressed(".");
+		calculator.digitPressed(".");
+		assertEquals("0.", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testTripleDecimalDisplaysOneDecimal() {
+		calculator.digitPressed(".");
+		calculator.digitPressed(".");
+		calculator.digitPressed(".");
+		assertEquals("0.", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testAttemptToDivide() {
+		calculator.digitPressed("4");
+		calculator.operatorPressed("/");
+		calculator.digitPressed("2");
+		calculator.calculateResult();
+		assertEquals("2", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testAttemptToMultiply() {
+		calculator.digitPressed("3");
+		calculator.operatorPressed("*");
+		calculator.digitPressed("3");
+		calculator.calculateResult();
+		assertEquals("9", display.getGUIComponent().getText());
+	}
+	
+	@Test
+	void testAttemptToSubtract() {
+		calculator.digitPressed("3");
+		calculator.operatorPressed("-");
+		calculator.digitPressed("2");
+		calculator.calculateResult();
+		assertEquals("1", display.getGUIComponent().getText());
+	}
+	
 }

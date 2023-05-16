@@ -198,6 +198,8 @@ class CalculatorAcceptanceTest {
 
 	@Test
 	void testPlusTenEqualsTen() {
+		calculator.getButton("1").doClick();
+		calculator.getButton("0").doClick();
 		calculator.getButton("+").doClick();
 		calculator.getButton("1").doClick();
 		calculator.getButton("0").doClick();

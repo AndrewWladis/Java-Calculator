@@ -94,41 +94,32 @@ public class SwingCalculator extends JFrame implements Calculator {
 		display.update("");
 	}
 	
+	private String updateOperand(String operand, String whichDigit) {
+		if (whichDigit.equals(".")) {
+			if (operand.contains(".")) {
+				return operand;
+			}
+			if (operand.isEmpty()) {
+				operand = "0";
+			}
+		}
+		
+		if (operand.equals("0") && !whichDigit.equals(".")) {
+			operand = whichDigit;
+		} else {
+			operand += whichDigit;
+		}
+		return operand;
+	}
+	
 	@Override
 	public void digitPressed(String whichDigit) {
 		if (operator == "") {
-			if (whichDigit.equals(".")) {
-				if (operand1.contains(".")) {
-					return;
-				}
-				if (operand1.isEmpty()) {
-					operand1 = "0";
-				}
-			}
 			
-			if (operand1.equals("0") && !whichDigit.equals(".")) {
-				operand1 = whichDigit;
-			} else {
-				operand1 += whichDigit;
-			}
-			
+			operand1 = updateOperand(operand1, whichDigit);
 			display.update(operand1);
 		} else {
-			if (whichDigit.equals(".")) {
-				if (operand2.contains(".")) {
-					return;
-				}
-				if (operand2.isEmpty()) {
-					operand2 = "0";
-				}
-			}
-			
-			if (operand2.equals("0") && !whichDigit.equals(".")) {
-				operand2 = whichDigit;
-			} else {
-				operand2 += whichDigit;
-			}
-			
+			operand2 = updateOperand(operand2, whichDigit);
 			display.update(operand2);
 		}
 	}
@@ -141,12 +132,17 @@ public class SwingCalculator extends JFrame implements Calculator {
 	@Override
 	public void calculateResult() {
 		Operation operation = operators.get(operator);
-		String result = String.valueOf(operation.perform(Double.valueOf(operand1), Double.valueOf(operand2)));
-        
-		if (result.endsWith(".0")) {
-        	result = result.substring(0, result.length() - 2);
-        }
-		display.update(String.valueOf(result));
+		try {
+			String result = String.valueOf(operation.perform(Double.valueOf(operand1), Double.valueOf(operand2)));
+	        
+			if (result.endsWith(".0")) {
+	        	result = result.substring(0, result.length() - 2);
+	        }
+			display.update(result);
+		} catch(RuntimeException e) {
+			display.update("ERR: " + e.getMessage());
+		}
+
 		
 	}
 

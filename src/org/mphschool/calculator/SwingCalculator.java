@@ -2,6 +2,8 @@ package org.mphschool.Calculator;
 
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 //import java.util.HashMap;
@@ -26,13 +28,11 @@ public class SwingCalculator extends JFrame implements Calculator {
 	private String operand1 = "";
 	private String operand2 = "";
 	private String operator;
+	private String result;
 	private Map<String, Operation> operators;
 
 	public SwingCalculator() {
 		super("Calculator");
-		operand1 = "";
-		operand2 = "";
-		operator = "";
 		
 		display = new Display();
 		buttons = new ArrayList<Button>();
@@ -59,6 +59,8 @@ public class SwingCalculator extends JFrame implements Calculator {
 		operators.put("-", new SubtractionOperator());
 		operators.put("*", new MultiplicationOperator());
 		operators.put("/", new DivisionOperator());
+		
+		clear();
 	}
 	
 	public Display getDisplay() {
@@ -91,7 +93,14 @@ public class SwingCalculator extends JFrame implements Calculator {
 
 	@Override
 	public void clear() {
+		clearFields();
 		display.update("");
+	}
+	
+	public void clearFields() {
+		operand1 = "";
+		operand2 = "";
+		operator = "";
 	}
 	
 	private String updateOperand(String operand, String whichDigit) {
@@ -126,24 +135,40 @@ public class SwingCalculator extends JFrame implements Calculator {
 
 	@Override
 	public void operatorPressed(String whichOperator) {
+		if (!operand2.isEmpty()) {
+			calculateResult();
+		}
 		operator = whichOperator;
+		if (operand1.isEmpty()) {
+			operand1 = String.valueOf(result);
+		}
+	}
+	
+	private static String round(String res) {
+	    BigDecimal bd = new BigDecimal(res);
+	    bd = bd.setScale(5, RoundingMode.HALF_UP);
+	    return Double.toString(bd.doubleValue());
 	}
 
 	@Override
 	public void calculateResult() {
 		Operation operation = operators.get(operator);
 		try {
-			String result = String.valueOf(operation.perform(Double.valueOf(operand1), Double.valueOf(operand2)));
+			String result = round(String.valueOf(operation.perform(Double.valueOf(operand1), Double.valueOf(operand2))));
 	        
 			if (result.endsWith(".0")) {
 	        	result = result.substring(0, result.length() - 2);
 	        }
+			
 			display.update(result);
 		} catch(RuntimeException e) {
-			display.update("ERR: " + e.getMessage());
+			if (operand1 == "" || operand2 == "") {
+				display.update("0");
+			} else {
+				display.update("ERR: " + e.getMessage());
+			}
 		}
-
-		
+		clearFields();
 	}
 
 	public JButton getButton(String label) {

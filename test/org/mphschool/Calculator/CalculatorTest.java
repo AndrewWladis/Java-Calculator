@@ -32,12 +32,83 @@ class CalculatorTest {
 		assertTrue(calculator instanceof SwingCalculator);
 	}
 	
-	@Test
-	void testClearClearsTheDisplay() {
-		display.getGUIComponent().setText("99");
+	@Nested
+	class ClearTests {
+		@Test
+		void testClearClearsTheDisplay() {
+			display.getGUIComponent().setText("99");
+			
+			calculator.clear();
+			assertEquals("", display.getGUIComponent().getText());
+		}
 		
-		calculator.clear();
-		assertEquals("", display.getGUIComponent().getText());
+		@Test
+		void testPressingADigitAndThenClearClearsTheOperator() {
+			calculator.digitPressed("3");
+			calculator.clear();
+			calculator.operatorPressed("1");
+			assertEquals("1", display.getGUIComponent().getText());
+		}
+		
+		@Test
+		void testClearClearsOperand1AndOperator() {
+			calculator.digitPressed("3");
+			calculator.operatorPressed("+");
+			calculator.clear();
+			calculator.digitPressed("5");
+			assertEquals("5", display.getGUIComponent().getText());
+			
+			calculator.operatorPressed("-");
+			calculator.digitPressed("2");
+			calculator.calculateResult();
+			assertEquals("3", display.getGUIComponent().getText());
+			
+		}
+		
+		@Test
+		void testClearAfterParitallyOperand2() {
+			calculator.digitPressed("3");
+			calculator.operatorPressed("+");
+			calculator.digitPressed("5");
+			calculator.clear();
+			calculator.digitPressed("8");
+			calculator.operatorPressed("/");
+			calculator.digitPressed("2");
+			calculator.calculateResult();
+			assertEquals("4", display.getGUIComponent().getText());
+			
+		}
+		
+		@Test
+		void testClearAfterEqualsStartsANewOperation() {
+			calculator.digitPressed("3");
+			calculator.operatorPressed("+");
+			calculator.digitPressed("5");
+			calculator.calculateResult();
+			calculator.clear();
+			calculator.digitPressed("8");
+			calculator.operatorPressed("/");
+			calculator.digitPressed("2");
+			calculator.calculateResult();
+			assertEquals("4", display.getGUIComponent().getText());
+			
+		}
+	}
+	
+	@Nested 
+	class ChainedOperationTests {
+		@Test
+		void testChainedOperationTest() {
+			calculator.digitPressed("3");
+			calculator.operatorPressed("+");
+			calculator.digitPressed("5");
+			calculator.calculateResult();
+			calculator.operatorPressed("/");
+			calculator.digitPressed("2");
+			calculator.calculateResult();
+			assertEquals("4", display.getGUIComponent().getText());
+			
+		}
 	}
 	
 	@Nested

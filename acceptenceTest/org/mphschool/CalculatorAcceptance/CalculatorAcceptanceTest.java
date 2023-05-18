@@ -198,8 +198,6 @@ class CalculatorAcceptanceTest {
 
 	@Test
 	void testPlusTenEqualsTen() {
-		calculator.getButton("1").doClick();
-		calculator.getButton("0").doClick();
 		calculator.getButton("+").doClick();
 		calculator.getButton("1").doClick();
 		calculator.getButton("0").doClick();
@@ -284,7 +282,7 @@ class CalculatorAcceptanceTest {
 	}
 
 	@Test
-	void testTwentyFiveMultiplyFourEqualsThirtyTwoMinusNineEqualsTwentyOne() {
+	void testTwentyFiveMultiplyFourEqualsThirtyTwoMinusNineEqualsTwentyThree() {
 		calculator.getButton("2").doClick();
 		calculator.getButton("5").doClick();
 		calculator.getButton("*").doClick();
@@ -295,7 +293,7 @@ class CalculatorAcceptanceTest {
 		calculator.getButton("-").doClick();
 		calculator.getButton("9").doClick();
 		calculator.getButton("=").doClick();
-		assertEquals("21", calculator.getDisplay().getGUIComponent().getText());
+		assertEquals("23", calculator.getDisplay().getGUIComponent().getText());
 	}
 
 

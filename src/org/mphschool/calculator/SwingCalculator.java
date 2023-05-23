@@ -28,7 +28,7 @@ public class SwingCalculator extends JFrame implements Calculator {
 	private String operand1 = "";
 	private String operand2 = "";
 	private String operator;
-	private String result;
+	private Double result;
 	private Map<String, Operation> operators;
 
 	public SwingCalculator() {
@@ -144,23 +144,27 @@ public class SwingCalculator extends JFrame implements Calculator {
 		}
 	}
 	
-	private static String round(String res) {
-	    BigDecimal bd = new BigDecimal(res);
+	private Double round(double d) {
+	    BigDecimal bd = new BigDecimal(d);
 	    bd = bd.setScale(5, RoundingMode.HALF_UP);
-	    return Double.toString(bd.doubleValue());
+	    return bd.doubleValue();
+	}
+	
+	private String updateDecimalPlaces(double d) {
+		String res = String.valueOf(d);
+		if (res.endsWith(".0")) {
+			res = res.substring(0, res.length() - 2);
+        }
+		return res;
 	}
 
 	@Override
 	public void calculateResult() {
 		Operation operation = operators.get(operator);
 		try {
-			String result = round(String.valueOf(operation.perform(Double.valueOf(operand1), Double.valueOf(operand2))));
-	        
-			if (result.endsWith(".0")) {
-	        	result = result.substring(0, result.length() - 2);
-	        }
+			result = round(operation.perform(Double.valueOf(operand1), Double.valueOf(operand2)));
 			
-			display.update(result);
+			display.update(String.valueOf(updateDecimalPlaces(result)));
 		} catch(RuntimeException e) {
 			if (operand1 == "" || operand2 == "") {
 				display.update("0");

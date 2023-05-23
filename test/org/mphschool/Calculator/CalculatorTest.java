@@ -46,7 +46,7 @@ class CalculatorTest {
 		void testPressingADigitAndThenClearClearsTheOperator() {
 			calculator.digitPressed("3");
 			calculator.clear();
-			calculator.operatorPressed("1");
+			calculator.digitPressed("1");
 			assertEquals("1", display.getGUIComponent().getText());
 		}
 		
@@ -107,7 +107,6 @@ class CalculatorTest {
 			calculator.digitPressed("2");
 			calculator.calculateResult();
 			assertEquals("4", display.getGUIComponent().getText());
-			
 		}
 	}
 	
